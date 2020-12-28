@@ -1,0 +1,11 @@
+{
+  "defaultProject": "ionic-select-search-example",
+  "projects": {
+    "ionic-select-search-example": {
+      "name": "Select Search Example",
+      "type": "angular",
+      "root": "projects/ionic-select-search-example",
+      "integrations": {}
+    }
+  }
+}
