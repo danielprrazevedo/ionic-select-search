@@ -3,5 +3,46 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "ionic-select-search": {
+      "projectType": "library",
+      "root": "projects/ionic-select-search",
+      "sourceRoot": "projects/ionic-select-search/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ionic-select-search/tsconfig.lib.json",
+            "project": "projects/ionic-select-search/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ionic-select-search/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ionic-select-search/src/test.ts",
+            "tsConfig": "projects/ionic-select-search/tsconfig.spec.json",
+            "karmaConfig": "projects/ionic-select-search/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ionic-select-search/tsconfig.lib.json",
+              "projects/ionic-select-search/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ionic-select-search"
 }
