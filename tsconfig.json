@@ -11,15 +11,15 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
       "ionic-select-search": [
         "dist/ionic-select-search/ionic-select-search",
         "dist/ionic-select-search"
-      ]
-    }
+      ],
+      "select-search": ["projects/ionic-select-search/src/public-api.ts"]
+    },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   }
 }

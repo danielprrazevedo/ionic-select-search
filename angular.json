@@ -36,9 +36,7 @@
               "projects/ionic-select-search/tsconfig.lib.json",
               "projects/ionic-select-search/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -165,9 +163,7 @@
               "projects/ionic-select-search-example/src/favicon.ico",
               "projects/ionic-select-search-example/src/assets"
             ],
-            "styles": [
-              "projects/ionic-select-search-example/src/styles.scss"
-            ],
+            "styles": ["projects/ionic-select-search-example/src/styles.scss"],
             "scripts": []
           }
         },
@@ -179,9 +175,7 @@
               "projects/ionic-select-search-example/tsconfig.spec.json",
               "projects/ionic-select-search-example/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -223,5 +217,16 @@
       }
     }
   },
-  "defaultProject": "ionic-select-search"
+  "defaultProject": "ionic-select-search",
+  "cli": {
+    "defaultCollection": "@ionic/angular-toolkit"
+  },
+  "schematics": {
+    "@ionic/angular-toolkit:component": {
+      "styleext": "scss"
+    },
+    "@ionic/angular-toolkit:page": {
+      "styleext": "scss"
+    }
+  }
 }
