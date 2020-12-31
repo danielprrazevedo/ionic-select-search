@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Test</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [formControl]="service.searchControl"></ion-searchbar>
+  </ion-toolbar>
+  <hr class="divider" />
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="radioSelectedValue" *ngIf="!multi">
+      <ion-item *ngFor="let item of service.list" lines="none">
+        <ion-label>{{ item.label }}</ion-label>
+        <ion-radio [value]="item.value" slot="start"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ng-container *ngIf="multi">
+      <ion-item *ngFor="let item of service.list" lines="none">
+        <ion-label>{{ item.label }}</ion-label>
+        <ion-checkbox
+          slot="start"
+          [value]="item.value"
+          [checked]="checkboxIsSelected(item.value)"
+          (ionChange)="markCheckBox($event)"
+        ></ion-checkbox>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer class="footer-content">
+  <ion-button fill="clear">Cancel</ion-button>
+  <ion-button fill="clear">OK</ion-button>
+</ion-footer>

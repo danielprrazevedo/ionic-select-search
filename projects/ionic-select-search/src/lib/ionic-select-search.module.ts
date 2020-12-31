@@ -1,12 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IonicSelectSearchComponent } from './ionic-select-search.component';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { IonicSelectSearchDirective } from './ionic-select-search.directive';
+import { IonicSelectSearchModalComponent } from './modal/ionic-select-search-modal.component';
 
 @NgModule({
-  declarations: [IonicSelectSearchComponent],
-  imports: [
-  ],
-  exports: [IonicSelectSearchComponent]
+  declarations: [IonicSelectSearchDirective, IonicSelectSearchModalComponent],
+  imports: [IonicModule, FormsModule, CommonModule, ReactiveFormsModule],
+  exports: [IonicSelectSearchDirective],
 })
-export class IonicSelectSearchModule { }
+export class IonicSelectSearchModule {}

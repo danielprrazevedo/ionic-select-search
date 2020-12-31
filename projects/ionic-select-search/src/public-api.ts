@@ -3,5 +3,5 @@
  */
 
 export * from './lib/ionic-select-search.service';
-export * from './lib/ionic-select-search.component';
+export * from './lib/ionic-select-search.directive';
 export * from './lib/ionic-select-search.module';
