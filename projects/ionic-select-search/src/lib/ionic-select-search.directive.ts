@@ -1,7 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnDestroy,
@@ -11,7 +13,6 @@ import {
 } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { EventEmitter } from 'events';
 import { IonicSelectSearchService } from './ionic-select-search.service';
 import { IonicSelectSearchModalComponent } from './modal/ionic-select-search-modal.component';
 
@@ -45,7 +46,7 @@ export class IonicSelectSearchDirective implements OnInit, OnDestroy {
   public multi = false;
 
   @Output()
-  public next = new EventEmitter();
+  public selectSearchChange = new EventEmitter();
 
   private innerList = new Array<any>();
 
@@ -90,6 +91,14 @@ export class IonicSelectSearchDirective implements OnInit, OnDestroy {
       },
     });
     this.service.modal.present();
+    this.service.modal.onDidDismiss().then((overlay) => {
+      if (overlay.data.ok) {
+        this.selectSearchChange.emit(this.service.value$.value);
+      } else {
+        this.selectSearchChange.emit(null);
+        this.service.value$.next(null);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -99,7 +108,6 @@ export class IonicSelectSearchDirective implements OnInit, OnDestroy {
       );
     }
     this.ngControl.valueChanges.subscribe((v) => {
-      console.log('ngControl');
       const value = this.service.value$.value;
       if (
         (Array.isArray(v) &&
@@ -114,12 +122,10 @@ export class IonicSelectSearchDirective implements OnInit, OnDestroy {
     });
 
     this.service.value$.subscribe((v) => {
-      console.log('service');
       this.ngControl.control.setValue(v);
     });
 
     this.ngControl.valueChanges.subscribe((value) => {
-      console.log('otherNgControl');
       let inputValue = '';
       if (this.multi && Array.isArray(value)) {
         const items = this.service.list.filter((i) =>
@@ -131,7 +137,7 @@ export class IonicSelectSearchDirective implements OnInit, OnDestroy {
         }
       } else {
         const item = this.service.list.find((i) =>
-          this.service.compareWith(i, value)
+          this.service.compareWith(i.value, value)
         );
         if (item) {
           inputValue = item.label;

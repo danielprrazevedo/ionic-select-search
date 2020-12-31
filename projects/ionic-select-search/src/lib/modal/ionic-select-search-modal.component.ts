@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { IonicSelectSearchService } from '../ionic-select-search.service';
 
 @Component({
@@ -23,6 +24,8 @@ export class IonicSelectSearchModalComponent {
   public set radioSelectedValue(value: any) {
     this.service.value$.next(value);
   }
+
+  constructor(private modalCtrl: ModalController) {}
 
   public checkboxIsSelected(value: any): boolean {
     if (!Array.isArray(this.service.value$.value)) {
@@ -49,5 +52,13 @@ export class IonicSelectSearchModalComponent {
       }
     }
     this.service.value$.next(value);
+  }
+
+  public ok(): void {
+    this.modalCtrl.dismiss({ ok: true });
+  }
+
+  public cancel(): void {
+    this.modalCtrl.dismiss({ ok: false });
   }
 }
